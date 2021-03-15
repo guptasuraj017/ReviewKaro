@@ -1,0 +1,1103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ReviewModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AssignedReviewDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReviewId" Type="bigint" Nullable="false" />
+          <Property Name="EmployeeId" Type="bigint" Nullable="false" />
+          <Property Name="Reviewer" Type="bigint" Nullable="false" />
+          <Property Name="OrganizationId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="int" Nullable="false" />
+          <Property Name="CityName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="StateId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="int" Nullable="false" />
+          <Property Name="CountryName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Last Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DOB" Type="date" Nullable="false" />
+          <Property Name="GenderId" Type="int" Nullable="false" />
+          <Property Name="Designation" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DOJ" Type="date" Nullable="false" />
+          <Property Name="Department" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CountryId" Type="int" Nullable="false" />
+          <Property Name="StateId" Type="int" Nullable="false" />
+          <Property Name="CityId" Type="int" Nullable="false" />
+          <Property Name="EmployeeTypeId" Type="int" Nullable="false" />
+          <Property Name="PhoneNumber" Type="bigint" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="OrganizationId" Type="int" Nullable="false" />
+          <Property Name="Role" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="EmployeeType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeType" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Phone Number" Type="bigint" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="CountryId" Type="int" Nullable="false" />
+          <Property Name="StateId" Type="int" Nullable="false" />
+          <Property Name="CityId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="2000" />
+          <Property Name="Role" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Agenda" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="ReviewCycleStartDate" Type="date" Nullable="false" />
+          <Property Name="ReviewCycleEndDate" Type="date" Nullable="false" />
+          <Property Name="MinRate" Type="tinyint" Nullable="false" />
+          <Property Name="MaxRate" Type="tinyint" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="2000" />
+          <Property Name="OrganizationId" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="smalldatetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ReviewSubmission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeId" Type="bigint" Nullable="false" />
+          <Property Name="Rating" Type="tinyint" Nullable="false" />
+          <Property Name="Feedback" Type="varchar" MaxLength="2000" />
+          <Property Name="OrganizationId" Type="int" />
+          <Property Name="ReviewId" Type="bigint" Nullable="false" />
+          <Property Name="ReviewerId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="int" Nullable="false" />
+          <Property Name="StateName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CountryId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__AssignedR__Emplo__6FE99F9F">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="AssignedReviewDetails" Type="Self.AssignedReviewDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssignedReviewDetails">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AssignedR__Organ__7C4F7684">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="AssignedReviewDetails" Type="Self.AssignedReviewDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssignedReviewDetails">
+              <PropertyRef Name="OrganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AssignedR__Revie__6EF57B66">
+          <End Role="Review" Type="Self.Review" Multiplicity="1" />
+          <End Role="AssignedReviewDetails" Type="Self.AssignedReviewDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Review">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssignedReviewDetails">
+              <PropertyRef Name="ReviewId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AssignedR__Revie__70DDC3D8">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="AssignedReviewDetails" Type="Self.AssignedReviewDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssignedReviewDetails">
+              <PropertyRef Name="Reviewer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__City__StateId__3C69FB99">
+          <End Role="State" Type="Self.State" Multiplicity="1" />
+          <End Role="City" Type="Self.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__CityId__656C112C">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__Countr__66603565">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__Employ__6754599E">
+          <End Role="EmployeeType" Type="Self.EmployeeType" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="EmployeeTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__Gender__68487DD7">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__Organi__693CA210">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="OrganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__StateI__6A30C649">
+          <End Role="State" Type="Self.State" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Organizat__CityI__4CA06362">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Organizat__Count__4BAC3F29">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Organizat__Descr__4AB81AF0">
+          <End Role="State" Type="Self.State" Multiplicity="1" />
+          <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Review__Organiza__7F2BE32F">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="Review" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="OrganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ReviewSub__Emplo__74AE54BC">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="ReviewSubmission" Type="Self.ReviewSubmission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReviewSubmission">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ReviewSub__Organ__7D439ABD">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="0..1" />
+          <End Role="ReviewSubmission" Type="Self.ReviewSubmission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReviewSubmission">
+              <PropertyRef Name="OrganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ReviewSub__Revie__02084FDA">
+          <End Role="Review" Type="Self.Review" Multiplicity="1" />
+          <End Role="ReviewSubmission" Type="Self.ReviewSubmission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Review">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReviewSubmission">
+              <PropertyRef Name="ReviewId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ReviewSub__Revie__05D8E0BE">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="ReviewSubmission" Type="Self.ReviewSubmission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReviewSubmission">
+              <PropertyRef Name="ReviewerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__State__CountryId__3E52440B">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="State" Type="Self.State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="State">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ReviewModelStoreContainer">
+          <EntitySet Name="AssignedReviewDetails" EntityType="Self.AssignedReviewDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeType" EntityType="Self.EmployeeType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Organization" EntityType="Self.Organization" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Review" EntityType="Self.Review" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReviewSubmission" EntityType="Self.ReviewSubmission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__AssignedR__Emplo__6FE99F9F" Association="Self.FK__AssignedR__Emplo__6FE99F9F">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="AssignedReviewDetails" EntitySet="AssignedReviewDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AssignedR__Organ__7C4F7684" Association="Self.FK__AssignedR__Organ__7C4F7684">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="AssignedReviewDetails" EntitySet="AssignedReviewDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AssignedR__Revie__6EF57B66" Association="Self.FK__AssignedR__Revie__6EF57B66">
+            <End Role="Review" EntitySet="Review" />
+            <End Role="AssignedReviewDetails" EntitySet="AssignedReviewDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AssignedR__Revie__70DDC3D8" Association="Self.FK__AssignedR__Revie__70DDC3D8">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="AssignedReviewDetails" EntitySet="AssignedReviewDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__City__StateId__3C69FB99" Association="Self.FK__City__StateId__3C69FB99">
+            <End Role="State" EntitySet="State" />
+            <End Role="City" EntitySet="City" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__CityId__656C112C" Association="Self.FK__Employee__CityId__656C112C">
+            <End Role="City" EntitySet="City" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__Countr__66603565" Association="Self.FK__Employee__Countr__66603565">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__Employ__6754599E" Association="Self.FK__Employee__Employ__6754599E">
+            <End Role="EmployeeType" EntitySet="EmployeeType" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__Gender__68487DD7" Association="Self.FK__Employee__Gender__68487DD7">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__Organi__693CA210" Association="Self.FK__Employee__Organi__693CA210">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__StateI__6A30C649" Association="Self.FK__Employee__StateI__6A30C649">
+            <End Role="State" EntitySet="State" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Organizat__CityI__4CA06362" Association="Self.FK__Organizat__CityI__4CA06362">
+            <End Role="City" EntitySet="City" />
+            <End Role="Organization" EntitySet="Organization" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Organizat__Count__4BAC3F29" Association="Self.FK__Organizat__Count__4BAC3F29">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Organization" EntitySet="Organization" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Organizat__Descr__4AB81AF0" Association="Self.FK__Organizat__Descr__4AB81AF0">
+            <End Role="State" EntitySet="State" />
+            <End Role="Organization" EntitySet="Organization" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Review__Organiza__7F2BE32F" Association="Self.FK__Review__Organiza__7F2BE32F">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="Review" EntitySet="Review" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ReviewSub__Emplo__74AE54BC" Association="Self.FK__ReviewSub__Emplo__74AE54BC">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="ReviewSubmission" EntitySet="ReviewSubmission" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ReviewSub__Organ__7D439ABD" Association="Self.FK__ReviewSub__Organ__7D439ABD">
+            <End Role="Organization" EntitySet="Organization" />
+            <End Role="ReviewSubmission" EntitySet="ReviewSubmission" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ReviewSub__Revie__02084FDA" Association="Self.FK__ReviewSub__Revie__02084FDA">
+            <End Role="Review" EntitySet="Review" />
+            <End Role="ReviewSubmission" EntitySet="ReviewSubmission" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ReviewSub__Revie__05D8E0BE" Association="Self.FK__ReviewSub__Revie__05D8E0BE">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="ReviewSubmission" EntitySet="ReviewSubmission" />
+          </AssociationSet>
+          <AssociationSet Name="FK__State__CountryId__3E52440B" Association="Self.FK__State__CountryId__3E52440B">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="State" EntitySet="State" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ReviewModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AssignedReviewDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReviewId" Type="Int64" Nullable="false" />
+          <Property Name="EmployeeId" Type="Int64" Nullable="false" />
+          <Property Name="Reviewer" Type="Int64" Nullable="false" />
+          <Property Name="OrganizationId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__AssignedR__Emplo__6FE99F9F" FromRole="AssignedReviewDetails" ToRole="Employee" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__AssignedR__Organ__7C4F7684" FromRole="AssignedReviewDetails" ToRole="Organization" />
+          <NavigationProperty Name="Review" Relationship="Self.FK__AssignedR__Revie__6EF57B66" FromRole="AssignedReviewDetails" ToRole="Review" />
+          <NavigationProperty Name="Employee1" Relationship="Self.FK__AssignedR__Revie__70DDC3D8" FromRole="AssignedReviewDetails" ToRole="Employee" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="Int32" Nullable="false" />
+          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StateId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="State" Relationship="Self.FK__City__StateId__3C69FB99" FromRole="City" ToRole="State" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__Employee__CityId__656C112C" FromRole="City" ToRole="Employee" />
+          <NavigationProperty Name="Organizations" Relationship="Self.FK__Organizat__CityI__4CA06362" FromRole="City" ToRole="Organization" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="Int32" Nullable="false" />
+          <Property Name="CountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__Employee__Countr__66603565" FromRole="Country" ToRole="Employee" />
+          <NavigationProperty Name="Organizations" Relationship="Self.FK__Organizat__Count__4BAC3F29" FromRole="Country" ToRole="Organization" />
+          <NavigationProperty Name="States" Relationship="Self.FK__State__CountryId__3E52440B" FromRole="Country" ToRole="State" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DOB" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="GenderId" Type="Int32" Nullable="false" />
+          <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DOJ" Type="DateTime" Precision="0" Nullable="false" />
+          <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CountryId" Type="Int32" Nullable="false" />
+          <Property Name="StateId" Type="Int32" Nullable="false" />
+          <Property Name="CityId" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeTypeId" Type="Int32" Nullable="false" />
+          <Property Name="PhoneNumber" Type="Int64" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrganizationId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AssignedReviewDetails" Relationship="Self.FK__AssignedR__Emplo__6FE99F9F" FromRole="Employee" ToRole="AssignedReviewDetails" />
+          <NavigationProperty Name="AssignedReviewDetails1" Relationship="Self.FK__AssignedR__Revie__70DDC3D8" FromRole="Employee" ToRole="AssignedReviewDetails" />
+          <NavigationProperty Name="City" Relationship="Self.FK__Employee__CityId__656C112C" FromRole="Employee" ToRole="City" />
+          <NavigationProperty Name="Country" Relationship="Self.FK__Employee__Countr__66603565" FromRole="Employee" ToRole="Country" />
+          <NavigationProperty Name="EmployeeType" Relationship="Self.FK__Employee__Employ__6754599E" FromRole="Employee" ToRole="EmployeeType" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK__Employee__Gender__68487DD7" FromRole="Employee" ToRole="Gender" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__Employee__Organi__693CA210" FromRole="Employee" ToRole="Organization" />
+          <NavigationProperty Name="State" Relationship="Self.FK__Employee__StateI__6A30C649" FromRole="Employee" ToRole="State" />
+          <NavigationProperty Name="ReviewSubmissions" Relationship="Self.FK__ReviewSub__Emplo__74AE54BC" FromRole="Employee" ToRole="ReviewSubmission" />
+          <NavigationProperty Name="ReviewSubmissions1" Relationship="ReviewModel.FK__ReviewSub__Revie__05D8E0BE" FromRole="Employee" ToRole="ReviewSubmission" />
+          <Property Name="Role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="EmployeeType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeType1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__Employee__Employ__6754599E" FromRole="EmployeeType" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Gender1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__Employee__Gender__68487DD7" FromRole="Gender" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Organization">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone_Number" Type="Int64" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CountryId" Type="Int32" Nullable="false" />
+          <Property Name="StateId" Type="Int32" Nullable="false" />
+          <Property Name="CityId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AssignedReviewDetails" Relationship="Self.FK__AssignedR__Organ__7C4F7684" FromRole="Organization" ToRole="AssignedReviewDetails" />
+          <NavigationProperty Name="City" Relationship="Self.FK__Organizat__CityI__4CA06362" FromRole="Organization" ToRole="City" />
+          <NavigationProperty Name="Country" Relationship="Self.FK__Organizat__Count__4BAC3F29" FromRole="Organization" ToRole="Country" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__Employee__Organi__693CA210" FromRole="Organization" ToRole="Employee" />
+          <NavigationProperty Name="State" Relationship="Self.FK__Organizat__Descr__4AB81AF0" FromRole="Organization" ToRole="State" />
+          <NavigationProperty Name="Reviews" Relationship="Self.FK__Review__Organiza__7F2BE32F" FromRole="Organization" ToRole="Review" />
+          <NavigationProperty Name="ReviewSubmissions" Relationship="Self.FK__ReviewSub__Organ__7D439ABD" FromRole="Organization" ToRole="ReviewSubmission" />
+          <Property Name="Role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Agenda" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ReviewCycleStartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ReviewCycleEndDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="MinRate" Type="Byte" Nullable="false" />
+          <Property Name="MaxRate" Type="Byte" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="OrganizationId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AssignedReviewDetails" Relationship="Self.FK__AssignedR__Revie__6EF57B66" FromRole="Review" ToRole="AssignedReviewDetails" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__Review__Organiza__7F2BE32F" FromRole="Review" ToRole="Organization" />
+          <NavigationProperty Name="ReviewSubmissions" Relationship="Self.FK__ReviewSub__Revie__02084FDA" FromRole="Review" ToRole="ReviewSubmission" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="0" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ReviewSubmission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="Int64" Nullable="false" />
+          <Property Name="Rating" Type="Byte" Nullable="false" />
+          <Property Name="Feedback" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="OrganizationId" Type="Int32" />
+          <Property Name="ReviewId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__ReviewSub__Emplo__74AE54BC" FromRole="ReviewSubmission" ToRole="Employee" />
+          <NavigationProperty Name="Organization" Relationship="Self.FK__ReviewSub__Organ__7D439ABD" FromRole="ReviewSubmission" ToRole="Organization" />
+          <NavigationProperty Name="Review" Relationship="Self.FK__ReviewSub__Revie__02084FDA" FromRole="ReviewSubmission" ToRole="Review" />
+          <Property Name="ReviewerId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Employee1" Relationship="ReviewModel.FK__ReviewSub__Revie__05D8E0BE" FromRole="ReviewSubmission" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="Int32" Nullable="false" />
+          <Property Name="StateName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CountryId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cities" Relationship="Self.FK__City__StateId__3C69FB99" FromRole="State" ToRole="City" />
+          <NavigationProperty Name="Country" Relationship="Self.FK__State__CountryId__3E52440B" FromRole="State" ToRole="Country" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__Employee__StateI__6A30C649" FromRole="State" ToRole="Employee" />
+          <NavigationProperty Name="Organizations" Relationship="Self.FK__Organizat__Descr__4AB81AF0" FromRole="State" ToRole="Organization" />
+        </EntityType>
+        <Association Name="FK__AssignedR__Emplo__6FE99F9F">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="AssignedReviewDetails" Type="Self.AssignedReviewDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssignedReviewDetails">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AssignedR__Organ__7C4F7684">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="AssignedReviewDetails" Type="Self.AssignedReviewDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssignedReviewDetails">
+              <PropertyRef Name="OrganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AssignedR__Revie__6EF57B66">
+          <End Role="Review" Type="Self.Review" Multiplicity="1" />
+          <End Role="AssignedReviewDetails" Type="Self.AssignedReviewDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Review">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssignedReviewDetails">
+              <PropertyRef Name="ReviewId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AssignedR__Revie__70DDC3D8">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="AssignedReviewDetails" Type="Self.AssignedReviewDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AssignedReviewDetails">
+              <PropertyRef Name="Reviewer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__City__StateId__3C69FB99">
+          <End Role="State" Type="Self.State" Multiplicity="1" />
+          <End Role="City" Type="Self.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__CityId__656C112C">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Organizat__CityI__4CA06362">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__Countr__66603565">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Organizat__Count__4BAC3F29">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__State__CountryId__3E52440B">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="State" Type="Self.State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="State">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__Employ__6754599E">
+          <End Role="EmployeeType" Type="Self.EmployeeType" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="EmployeeTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__Gender__68487DD7">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__Organi__693CA210">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="OrganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__StateI__6A30C649">
+          <End Role="State" Type="Self.State" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ReviewSub__Emplo__74AE54BC">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="ReviewSubmission" Type="Self.ReviewSubmission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReviewSubmission">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Organizat__Descr__4AB81AF0">
+          <End Role="State" Type="Self.State" Multiplicity="1" />
+          <End Role="Organization" Type="Self.Organization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="Organization">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Review__Organiza__7F2BE32F">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="1" />
+          <End Role="Review" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="OrganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ReviewSub__Organ__7D439ABD">
+          <End Role="Organization" Type="Self.Organization" Multiplicity="0..1" />
+          <End Role="ReviewSubmission" Type="Self.ReviewSubmission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReviewSubmission">
+              <PropertyRef Name="OrganizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ReviewSub__Revie__02084FDA">
+          <End Role="Review" Type="Self.Review" Multiplicity="1" />
+          <End Role="ReviewSubmission" Type="Self.ReviewSubmission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Review">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReviewSubmission">
+              <PropertyRef Name="ReviewId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ReviewEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AssignedReviewDetails" EntityType="Self.AssignedReviewDetail" />
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <EntitySet Name="Countries" EntityType="Self.Country" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="EmployeeTypes" EntityType="Self.EmployeeType" />
+          <EntitySet Name="Genders" EntityType="Self.Gender" />
+          <EntitySet Name="Organizations" EntityType="Self.Organization" />
+          <EntitySet Name="Reviews" EntityType="Self.Review" />
+          <EntitySet Name="ReviewSubmissions" EntityType="Self.ReviewSubmission" />
+          <EntitySet Name="States" EntityType="Self.State" />
+          <AssociationSet Name="FK__AssignedR__Emplo__6FE99F9F" Association="Self.FK__AssignedR__Emplo__6FE99F9F">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="AssignedReviewDetails" EntitySet="AssignedReviewDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AssignedR__Organ__7C4F7684" Association="Self.FK__AssignedR__Organ__7C4F7684">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="AssignedReviewDetails" EntitySet="AssignedReviewDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AssignedR__Revie__6EF57B66" Association="Self.FK__AssignedR__Revie__6EF57B66">
+            <End Role="Review" EntitySet="Reviews" />
+            <End Role="AssignedReviewDetails" EntitySet="AssignedReviewDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AssignedR__Revie__70DDC3D8" Association="Self.FK__AssignedR__Revie__70DDC3D8">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="AssignedReviewDetails" EntitySet="AssignedReviewDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__City__StateId__3C69FB99" Association="Self.FK__City__StateId__3C69FB99">
+            <End Role="State" EntitySet="States" />
+            <End Role="City" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__CityId__656C112C" Association="Self.FK__Employee__CityId__656C112C">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Organizat__CityI__4CA06362" Association="Self.FK__Organizat__CityI__4CA06362">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="Organization" EntitySet="Organizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__Countr__66603565" Association="Self.FK__Employee__Countr__66603565">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Organizat__Count__4BAC3F29" Association="Self.FK__Organizat__Count__4BAC3F29">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="Organization" EntitySet="Organizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__State__CountryId__3E52440B" Association="Self.FK__State__CountryId__3E52440B">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="State" EntitySet="States" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__Employ__6754599E" Association="Self.FK__Employee__Employ__6754599E">
+            <End Role="EmployeeType" EntitySet="EmployeeTypes" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__Gender__68487DD7" Association="Self.FK__Employee__Gender__68487DD7">
+            <End Role="Gender" EntitySet="Genders" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__Organi__693CA210" Association="Self.FK__Employee__Organi__693CA210">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__StateI__6A30C649" Association="Self.FK__Employee__StateI__6A30C649">
+            <End Role="State" EntitySet="States" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ReviewSub__Emplo__74AE54BC" Association="Self.FK__ReviewSub__Emplo__74AE54BC">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="ReviewSubmission" EntitySet="ReviewSubmissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Organizat__Descr__4AB81AF0" Association="Self.FK__Organizat__Descr__4AB81AF0">
+            <End Role="State" EntitySet="States" />
+            <End Role="Organization" EntitySet="Organizations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Review__Organiza__7F2BE32F" Association="Self.FK__Review__Organiza__7F2BE32F">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="Review" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ReviewSub__Organ__7D439ABD" Association="Self.FK__ReviewSub__Organ__7D439ABD">
+            <End Role="Organization" EntitySet="Organizations" />
+            <End Role="ReviewSubmission" EntitySet="ReviewSubmissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ReviewSub__Revie__02084FDA" Association="Self.FK__ReviewSub__Revie__02084FDA">
+            <End Role="Review" EntitySet="Reviews" />
+            <End Role="ReviewSubmission" EntitySet="ReviewSubmissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ReviewSub__Revie__05D8E0BE" Association="ReviewModel.FK__ReviewSub__Revie__05D8E0BE">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="ReviewSubmission" EntitySet="ReviewSubmissions" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK__ReviewSub__Revie__05D8E0BE">
+          <End Type="ReviewModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="ReviewModel.ReviewSubmission" Role="ReviewSubmission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReviewSubmission">
+              <PropertyRef Name="ReviewerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ReviewModelStoreContainer" CdmEntityContainer="ReviewEntities">
+          <EntitySetMapping Name="AssignedReviewDetails">
+            <EntityTypeMapping TypeName="ReviewModel.AssignedReviewDetail">
+              <MappingFragment StoreEntitySet="AssignedReviewDetails">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ReviewId" ColumnName="ReviewId" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="Reviewer" ColumnName="Reviewer" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="ReviewModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="ReviewModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="ReviewModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last Name" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="DOJ" ColumnName="DOJ" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="EmployeeTypeId" ColumnName="EmployeeTypeId" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeTypes">
+            <EntityTypeMapping TypeName="ReviewModel.EmployeeType">
+              <MappingFragment StoreEntitySet="EmployeeType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmployeeType1" ColumnName="EmployeeType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genders">
+            <EntityTypeMapping TypeName="ReviewModel.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Gender1" ColumnName="Gender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Organizations">
+            <EntityTypeMapping TypeName="ReviewModel.Organization">
+              <MappingFragment StoreEntitySet="Organization">
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Phone_Number" ColumnName="Phone Number" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reviews">
+            <EntityTypeMapping TypeName="ReviewModel.Review">
+              <MappingFragment StoreEntitySet="Review">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Agenda" ColumnName="Agenda" />
+                <ScalarProperty Name="ReviewCycleStartDate" ColumnName="ReviewCycleStartDate" />
+                <ScalarProperty Name="ReviewCycleEndDate" ColumnName="ReviewCycleEndDate" />
+                <ScalarProperty Name="MinRate" ColumnName="MinRate" />
+                <ScalarProperty Name="MaxRate" ColumnName="MaxRate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReviewSubmissions">
+            <EntityTypeMapping TypeName="ReviewModel.ReviewSubmission">
+              <MappingFragment StoreEntitySet="ReviewSubmission">
+                <ScalarProperty Name="ReviewerId" ColumnName="ReviewerId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Feedback" ColumnName="Feedback" />
+                <ScalarProperty Name="OrganizationId" ColumnName="OrganizationId" />
+                <ScalarProperty Name="ReviewId" ColumnName="ReviewId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="ReviewModel.State">
+              <MappingFragment StoreEntitySet="State">
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "DASHBOARD";
+
+}
+@section Menu{
+
+    @Html.ActionLink("Home", "Index", "Employee", new { @class = "active" })
+}
+@section Name{
+    <a href="#default">
+        @ViewBag.Name
+    </a>
+}
+
+<div class="pageTitle"><h4 class="title">@ViewBag.Title</h4></div>
+<div style="background-color:white; margin:0 4px 0 4px; border:hidden; border-radius:5px;padding:2px 2px 2px 2px">
+    <div>
+        <label for="pending">Pending Reviews</label>
+        <input type="checkbox" id="pending" name="pending" />
+
+        <label for="submitted">Submitted Reviews</label>
+        <input type="checkbox" id="submitted" name="submitted" />
+
+       
+    </div>
+</div>
+
+
+<div class="tablediv">
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Agenda
+                </th>
+                <th>
+                    Employee Name
+                </th>
+                <th>
+                    Rating
+                </th>
+                <th>
+                    Feedback
+                </th>
+            </tr>
+        </thead>
+        <tbody id="pendingDiv">
+        </tbody>
+        <tbody id="submittedDiv">
+        </tbody>
+
+
+    </table>
+
+</div>
+
+@if (ViewBag.ReviewSubmittedMessage != null)
+{
+    <script>
+        $(document).ready(function () {
+            toastr.success("Review Submitted Successfully");
+        });
+    </script>
+}
+<script type="text/javascript" src="~/Script/EmployeeDashboard.js"></script>
+
+@section script{
+ <script src="~/Scripts/Chart.js"></script>
+}

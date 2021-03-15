@@ -1,0 +1,142 @@
+﻿@model ReviewKaro.Review
+
+@{
+    ViewBag.Title = "Edit Review";
+
+}
+
+@section Menu{
+
+    @Html.ActionLink("Home", "Index", "Employees")
+
+
+    @Html.ActionLink("Review", "Index", "Review")
+
+
+}
+
+@section Name{
+    <a href="#default">
+        @ViewBag.Name
+    </a>
+}
+
+<div class="pageSubTitle"><h4 class="title">@ViewBag.Title</h4></div>
+<div class="containerforform">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+
+
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div class="form-group row">
+            @Html.HiddenFor(x => x.Id)
+            @Html.HiddenFor(x => x.OrganizationId)
+            @Html.HiddenFor(x => x.CreatedOn)
+            @Html.HiddenFor(x => x.CreatedBy)
+
+            @Html.LabelFor(model => model.Agenda, new { @class = "col-sm-2 col-form-label" })
+            <div class="form-group col-sm-10">
+                @Html.EditorFor(model => model.Agenda, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Agenda, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+
+        <div class="form-group row">
+
+            @Html.Label("Start Date", new { @class = "col-sm-2 col-form-label" })
+            <div class="form-group col-sm-4">
+                @Html.TextBoxFor(model => model.ReviewCycleStartDate, Model.ReviewCycleStartDate.ToString("dd/MM/yyyy"), new { @class = "form-control datepicker" })
+                @Html.ValidationMessageFor(model => model.ReviewCycleStartDate, "", new { @class = "text-danger" })
+
+            </div>
+
+
+
+            @Html.Label("End Date", new { @class = "col-sm-2 col-form-label" })
+            <div class="form-group col-sm-4">
+                @Html.TextBoxFor(model => model.ReviewCycleEndDate, Model.ReviewCycleStartDate.ToString("dd/MM/yyyy"), new { @class = "form-control datepicker" })
+                @Html.ValidationMessageFor(model => model.ReviewCycleEndDate, "", new { @class = "text-danger" })
+
+            </div>
+
+        </div>
+
+        <div class="form-group row">
+
+            @Html.Label("Minimum Rating", new { @class = "col-sm-2 col-form-label" })
+            <div class="form-group col-sm-4">
+                @Html.EditorFor(model => model.MinRate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MinRate, "", new { @class = "text-danger" })
+
+            </div>
+
+
+            @Html.Label("Maximum Rating", new { @class = "col-sm-2 col-form-label" })
+            <div class="form-group col-sm-4">
+                @Html.EditorFor(model => model.MaxRate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaxRate, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+
+        <div class="form-group row ">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+            <div class="col-sm-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @Html.ActionLink("Back", "Index", null, new { @class = "backButton btn btn-secondary" })
+                <input type="submit" value="Submit" class="btn btn-primary" />
+
+            </div>
+        </div>
+
+    }
+
+
+</div>
+@if (ViewBag.CreateReview != null)
+{
+    <script>
+        $(document).ready(function () {
+            toastr.success("Review added Successfully");
+        });
+    </script>
+}
+@if (ViewBag.EditReview != null)
+{
+    <script>
+        $(document).ready(function () {
+            toastr.success("Details updated Successfully");
+        });
+    </script>
+}
+
+@section script{
+
+    <script src="~/Script/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $(".datepicker").datepicker({
+                dateFormat: "yy/mm/dd",
+                showOn: "button",
+                buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif",
+                buttonImageOnly: true,
+                changeMonth: true,
+                changeYear: true,
+                minDate: new Date(1990, 1, 1),
+                maxDate: new Date(2025, 1, 1)
+            });
+        });
+    </script>
+}
+

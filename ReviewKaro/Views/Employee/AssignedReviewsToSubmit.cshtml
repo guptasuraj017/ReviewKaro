@@ -1,0 +1,29 @@
+﻿@model IEnumerable<ReviewKaro.AssignedReviewDetail>
+
+
+
+
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Review.Agenda)
+            </td>
+            <td>
+                @Html.DisplayName(item.Employee.FirstName + " " + item.Employee.Last_Name)
+            </td>
+
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+                @Html.ActionLink("Submit Review", "SubmitReview", new { id = item.Id }, new { @class = "btn btn-success", @role = "button" })
+            </td>
+        </tr>
+    }
+
+      
+

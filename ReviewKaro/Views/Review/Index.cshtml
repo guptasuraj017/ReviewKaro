@@ -1,0 +1,89 @@
+﻿@model IEnumerable<ReviewKaro.Review>
+
+@{
+    ViewBag.Title = "Reviews";
+
+}
+
+
+@section Menu{
+
+    @Html.ActionLink("Home", "Index", "Employees")
+
+
+    @Html.ActionLink("Review", "Index", "Review", new { @class = "active" })
+
+}
+
+
+@section Name{
+    <a href="#default">
+        @ViewBag.Name
+    </a>
+}
+
+<div>
+    @Html.ActionLink("Add Review", "CreateReview", "Review", new { @id = "addNewButton", @class = "btn btn-success", @role = "button" })
+</div>
+<div class="pageTitle"><h4 class="title">@ViewBag.Title</h4></div>
+<div class="tablediv">
+    <table class="table table-bordered ">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Agenda)
+                </th>
+                <th>
+                    @Html.DisplayName("Start Date")
+                </th>
+                <th>
+                    @Html.DisplayName("End Date")
+                </th>
+                <th>
+                    @Html.DisplayName("Minimum Rating")
+                </th>
+                <th>
+                    @Html.DisplayName("Maximum Rating")
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Agenda)
+                    </td>
+                    <td>
+                        @Html.DisplayName(item.ReviewCycleStartDate.ToString("dd/MM/yyyy"))
+                    </td>
+                    <td>
+                        @Html.DisplayName(item.ReviewCycleEndDate.ToString("dd/MM/yyyy"))
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MinRate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaxRate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "mt-2 btn btn-primary", @role = "button" })
+                        @Html.ActionLink("Assign", "AssignReview", new { reviewId = item.Id }, new { @class = "mt-2 btn btn-success", @role = "button" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "mt-2 btn btn-danger", @role = "button" })
+                        @Html.ActionLink("Get Details", "GetAssignedReviews", new { id = item.Id }, new { @class = "mt-2 btn btn-info", @role = "button" })
+                        @Html.ActionLink("Submitted ", "GetSubmittedReviews", new { id = item.Id }, new { @class = "mt-2 btn btn-secondary", @role = "button" })
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+

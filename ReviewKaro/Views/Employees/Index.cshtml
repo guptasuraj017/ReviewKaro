@@ -1,0 +1,177 @@
+﻿@model IEnumerable<ReviewKaro.Employee>
+
+@{
+    ViewBag.Title = "Employees";
+
+}
+
+
+
+@section Menu{
+
+    @Html.ActionLink("Home", "Index", "Employees", new { @class = "active" })
+
+
+    @Html.ActionLink("Review", "Index", "Review")
+
+
+}
+
+@section Name{
+    <a href="#default">
+        @ViewBag.Name
+    </a>
+}
+
+
+
+
+
+@Html.ActionLink("Add employee", "Create", "Employees", null, new { @id = "addNewButton", @class = " btn btn-success" })
+<div class="pageTitle"><h4 class="title">@ViewBag.Title</h4></div>
+<div>
+    <div class="tablediv">
+        <table class="table table-striped table-bordered table-hover">
+
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayName("First Name")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Last Name")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Gender")
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Username)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayName("Phone Number")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Country")
+                    </th>
+                    <th>
+                        @Html.DisplayName("State")
+                    </th>
+                    <th>
+                        @Html.DisplayName("City")
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DOB)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DOJ)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Department)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Designation)
+                    </th>
+
+                    <th>
+                        @Html.DisplayName("Type")
+                    </th>
+
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Status)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    if (item.Status)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Last_Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Gender.Gender1)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Username)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PhoneNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Country.CountryName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.State.StateName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.City.CityName)
+                            </td>
+
+                            <td>
+                                @Html.DisplayName(item.DOB.ToString("dd/MM/yyyy"))
+                            </td>
+                            <td>
+                                @Html.DisplayName(item.DOJ.ToString("dd/MM/yyyy"))
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Department)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Designation)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EmployeeType.EmployeeType1)
+                            </td>
+
+
+
+                            @if (item.Status)
+                            {
+                                <td>
+                                    Active
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    Inactive
+                                </td>
+                            }
+
+
+
+
+
+
+
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "mt-2 mb-2 btn btn-info", @role = "button" })
+
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @onclick = "return confirm('Are you sure?')", @class = "mt-2 mb-2 btn btn-danger", @role = "button" })
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
+

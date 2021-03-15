@@ -1,0 +1,93 @@
+﻿@model IEnumerable<ReviewKaro.Organization>
+
+
+@{
+    ViewBag.Title = "Organizations";
+
+}
+
+
+
+
+
+
+
+<div>
+    @Html.ActionLink("Add", "Create", null, new { @class = "mt-2  ml-2 btn btn-success", @role = "button" })
+</div>
+<div class="pageTitle"><h4 class="title">@ViewBag.Title</h4></div>
+<div class="tablediv">
+    <table class="table table-striped table-bordered table-hover">
+        <tr>
+            <th>Name</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+            <th>User Name</th>
+            <th>Country</th>
+            <th>State</th>
+            <th>City</th>
+            <th>Status</th>
+            <th>Description</th>
+        </tr>
+
+        @foreach (var organization in Model)
+        {
+            <tr>
+
+                <td>
+                    @organization.Name
+                </td>
+                <td>
+                    @organization.Phone_Number
+                </td>
+                <td>
+                    @organization.Email
+                </td>
+                <td>
+                    @organization.UserId
+                </td>
+
+                <td>
+                    @organization.Country.CountryName
+                </td>
+                <td>
+                    @organization.State.StateName
+                </td>
+                <td>
+                    @organization.City.CityName
+                </td>
+
+
+                @if (organization.Status)
+                {
+                    <td>
+                        Active
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        Inactive
+                    </td>
+                }
+
+
+                <td>
+                    @organization.Description
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = organization.Id }, new { @class = "btn btn-info", @role = "button" })
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = organization.Id }, new { @onclick = "return confirm('Are you sure?')", @class = "btn btn-danger", @role = "button" })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+
+
+
+

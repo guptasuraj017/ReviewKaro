@@ -1,0 +1,73 @@
+﻿@model IEnumerable<ReviewKaro.ReviewSubmission>
+
+@{
+    ViewBag.Title = "Submitted Reviews";
+
+}
+
+
+@section Menu{
+
+    @Html.ActionLink("Home", "Index", "Employees")
+
+
+    @Html.ActionLink("Review", "Index", "Review")
+
+}
+
+@section Name{
+    <a href="#default">
+        @ViewBag.Name
+    </a>
+}
+
+<div class="pageTitle"><h4 class="title">Submitted Review</h4></div>
+<div class="tablediv">
+    <table class="table table-striped table-bordered table-hover">
+        <tr>
+
+            <th>
+                @Html.DisplayName("Employee Name")
+            </th>
+            <th>
+                @Html.DisplayName("Reviewer Name")
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Feedback)
+            </th>
+
+
+
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayName(item.Employee.FirstName + " " + item.Employee.Last_Name)
+                </td>
+                <td>
+                    @Html.DisplayName(item.Employee1.FirstName + " " + item.Employee1.Last_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Feedback)
+                </td>
+
+
+            </tr>
+        }
+
+    </table>
+</div>
+<div>
+    @Html.ActionLink("Back", "Index", null, new { @class = "backButton btn btn-success" })
+</div>

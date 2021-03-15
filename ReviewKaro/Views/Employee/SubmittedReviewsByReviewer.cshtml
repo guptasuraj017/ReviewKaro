@@ -1,0 +1,25 @@
+﻿@model IEnumerable<ReviewKaro.ReviewSubmission>
+
+
+
+     
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Review.Agenda)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee.FirstName )
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Feedback)
+                </td>
+            </tr>
+            }
+     
+

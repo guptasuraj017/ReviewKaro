@@ -1,0 +1,155 @@
+﻿@model ReviewKaro.AssignedReviewDetail
+
+@{
+    ViewBag.Title = "Assign Review";
+
+}
+
+
+@section Menu{
+
+    @Html.ActionLink("Home", "Index", "Employees")
+
+
+    @Html.ActionLink("Review", "Index", "Review")
+}
+
+@section Name{
+    <a href="#default">
+        @ViewBag.Name
+    </a>
+}
+
+<div class="pageTitle"><h4 class="title">Assign Review</h4></div>
+@*<div class="tablediv">
+    <table class="ml-2 table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Agennda
+                </th>
+                <th>
+                    Start Date
+                </th>
+                <th>
+                    End Date
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>
+                    @ViewBag.Agenda
+                </th>
+                <th>
+                    @ViewBag.CycleStartDate.ToString("dd/MM/yyyy")
+                </th>
+                <th>
+                    @ViewBag.CycleEndDate.ToString("dd/MM/yyyy")
+                </th>
+            </tr>
+        </tbody>
+    </table>
+</div>*@
+
+
+
+<div class="pageSubTitle"><h4 class="title">Agenda : @ViewBag.Agenda</h4></div>
+<div class="containerforform">
+
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div>
+
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            @Html.HiddenFor(model => model.Status)
+            <div class="form-group row">
+                @Html.Label("Employee", new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-4">
+                    @Html.DropDownList("EmployeeId", null, htmlAttributes: new { @class = "form-control", @multiple = "multiple" })
+                    @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
+                </div>
+                @*</div>*@
+
+                <div id="selectedEmployees"></div>
+
+                @*<div class="form-group row">*@
+                @Html.Label("Reviewer", new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-4">
+                    @Html.DropDownList("Reviewer", new SelectList(""), htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Reviewer, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    @Html.ActionLink("Back", "Index", "Review", new { @class = "backButton btn btn-secondary" })
+                    <input type="submit" value="Submit" class="btn btn-primary" />
+
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        var selectedEmployeeIds = [];
+        var selectedReviewerId = 0;
+
+        $("#EmployeeId").blur(function () {
+
+            
+            $('#EmployeeId option:selected').each(function () {
+                $(this).attr('disabled', 'disabled')
+            });
+            var remainingOptions = $('#EmployeeId').html()
+           
+
+            $("#Reviewer").empty();
+            $("#Reviewer").append(remainingOptions);
+        });
+
+
+
+        
+
+        $("form").submit(function (event) {
+            selectedReviewerId = $("#Reviewer").val();
+            $("#EmployeeId option:selected").each(function () {
+                selectedEmployeeIds.push($(this).val());
+
+            });
+
+
+
+            for (var i = 0; i < selectedEmployeeIds.length; i++) {
+                var assignedreview = {
+                    "EmployeeId": selectedEmployeeIds[i],
+                    "Reviewer": selectedReviewerId
+                };
+                $.ajax({
+                    url: "/Review/AssignReview",
+                    method: "post",
+                    data: assignedreview,
+                    success: function (response) {
+                        toastr.success("Review Assigned Successfully");
+                    }
+
+                })
+            }
+            event.preventDefault();
+
+
+        });
+
+    });
+</script>
+
+

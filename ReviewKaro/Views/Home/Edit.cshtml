@@ -1,0 +1,205 @@
+﻿@model ReviewKaro.Organization
+
+@{
+    ViewBag.Title = "Update Organization Details";
+
+}
+
+
+
+<script>
+    $(document).ready(function () {
+        $("#CountryId").change(function () {
+            var countryid = $(this).val();
+
+
+            $.ajax('/Home/GetStateList?id=' + countryid,
+                {
+                    dataType: 'html', // type of response data
+
+                    success: function (response) {
+
+                        $('#StateId').empty();
+                        $('#StateId').append(response);
+                    }
+                });
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $("#StateId").change(function () {
+            var stateid = $(this).val();
+
+
+            $.ajax('/Home/GetCityList?id=' + stateid,
+                {
+                    dataType: 'html', // type of response data
+
+                    success: function (response) {
+                        // success callback function
+                        $('#CityId').empty();
+                        $('#CityId').append(response);
+                    }
+                });
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('#submitresponse').click(function () {
+            confirm("Your form will be submitted");
+        });
+    });
+</script>
+<script>
+        $(document).ready(function () {
+           $('#StateId').append('<option selected="selected" value="@Model.StateId">@Model.State.StateName</option>');
+        });
+</script>
+<script>
+        $(document).ready(function () {
+           $('#CityId').append('<option selected="selected" value="@Model.CityId">@Model.City.CityName</option>');
+        });
+</script>
+<style>
+    .myDiv {
+        /*border: 5px outset red;*/
+        margin-left: 50px;
+    }
+</style>
+
+<div id="resultDiv"></div>
+
+<div class="pageSubTitle"><h4 class="title">@ViewBag.Title</h4></div>
+<div class="containerforform">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.Role)
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Name, new { @class = "col-sm-2 col-form-label" })
+            <div class="form-group col-sm-4">
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+
+
+            @Html.Label("Phone Number", new { @class = "col-sm-2 col-form-label" })
+            <div class="form-group col-sm-4">
+                @Html.TextBoxFor(model => model.Phone_Number, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Phone_Number, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+
+
+
+        <div class="form-group row">
+
+            @Html.LabelFor(model => model.Email, new { @class = "col-sm-2 col-form-label" })
+            <div class="form-group col-sm-4">
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+
+
+            @Html.Label("Username", new { @class = "col-sm-2 col-form-label" })
+            <div class="form-group col-sm-4">
+                @Html.HiddenFor(model => model.UserId)
+                @Html.TextBoxFor(model => model.UserId, new { @class = "form-control", @disabled = "disabled" })
+                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+
+            </div>
+
+
+
+        </div>
+
+
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Password, new { @class = "col-sm-2 col-form-label" })
+            <div class="form-group col-sm-4">
+                @Html.TextBoxFor(model => model.Password, new { @class = "form-control", @type = "password" })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+
+            @Html.Label("Country", new { @class = "col-sm-2 col-form-label" })
+            <div class="form-group col-sm-4">
+                @Html.DropDownListFor(model => model.CountryId, ViewBag.Countries as SelectList, "Select Country", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+
+            </div>
+
+
+        </div>
+
+        <div class="form-group row">
+
+            @Html.Label("State", new { @class = "col-sm-2 col-form-label" })
+            <div class="form-group col-sm-4">
+                @Html.DropDownList("StateId", new SelectList(""), "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.StateId, "", new { @class = "text-danger" })
+            </div>
+
+
+            @Html.Label("City", new { @class = "col-sm-2 col-form-label" })
+            <div class="form-group col-sm-4">
+                @Html.DropDownList("CityId", new SelectList(""), "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Status, new { @class = "col-sm-2 col-form-label" })
+
+            <div class="form-group col-sm-10">
+                @Html.EditorFor(model => model.Status, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+            </div>
+
+
+        </div>
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Description, new { @class = "col-sm-2 col-form-label" })
+            <div class="form-group col-sm-10">
+                @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div style="margin-bottom:10px; display:block">
+            @Html.ActionLink("Back", "Index", null, new { @class = "backButton btn btn-secondary" })
+            <input id="submitresponse" type="submit" class="btn btn-primary" , value="Submit" />
+
+        </div>
+
+
+    }
+
+</div>
+
+@if (ViewBag.CreateOrganization != null)
+{
+    <script>
+        $(document).ready(function () {
+            toastr.success("Organization added Successfully");
+        });
+    </script>
+}
+@if (ViewBag.EditOrganization != null)
+{
+    <script>
+        $(document).ready(function () {
+            toastr.success("Details updated Successfully");
+        });
+    </script>
+}
+
+

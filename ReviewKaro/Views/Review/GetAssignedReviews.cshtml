@@ -1,0 +1,61 @@
+﻿@model IEnumerable<ReviewKaro.AssignedReviewDetail>
+
+@{
+    ViewBag.Title = "Assigned Reviews";
+
+}
+
+@section Menu{
+
+    @Html.ActionLink("Home", "Index", "Employees")
+
+
+    @Html.ActionLink("Review", "Index", "Review")
+
+}
+
+
+@section Name{
+    <a href="#default">
+        @ViewBag.Name
+    </a>
+}
+
+
+<div class="pageTitle"><h4 class="title">@ViewBag.Title</h4></div>
+<div class="tablediv">
+    <table class="table table-striped table-bordered table-hover">
+        <tr>
+            <th>
+                @Html.DisplayName("Employee Name")
+            </th>
+
+            <th>
+                @Html.DisplayName("Reviewer")
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayName(item.Employee.FirstName + " " + item.Employee.Last_Name)
+                </td>
+
+                <td>
+                    @Html.DisplayName(item.Employee1.FirstName + " " + item.Employee1.Last_Name)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-primary", @role = "button" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<div>
+    @Html.ActionLink("Back", "Index", null, new { @class = "backButton btn btn-success" })
+</div>

@@ -1,0 +1,116 @@
+﻿@model ReviewKaro.ReviewSubmission
+
+@{
+    ViewBag.Title = "Submit Review";
+
+}
+
+
+@section Menu{
+
+    @Html.ActionLink("Home", "Index", "Employee")
+
+}
+
+@section Name{
+    <a href="#default">
+        @ViewBag.Name
+    </a>
+}
+
+
+<div class="pageTitle"><h4 class="title">@ViewBag.Title</h4></div>
+<div class="tablediv">
+    <table class="ml-2 table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Employee
+                </th>
+                <th>
+                    Agennda
+                </th>
+                <th>
+                    Start Date
+                </th>
+                <th>
+                    End Date
+                </th>
+                <th>
+                    Minimum Rating
+                </th>
+                <th>
+                    Maximum Rating
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @ViewBag.EmployeeName
+                </td>
+                <td>
+                    @ViewBag.Agenda
+                </td>
+                <td>
+                    @ViewBag.ReviewCycleStartDate.ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @ViewBag.ReviewCycleEndDate.ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @ViewBag.MinRate
+                </td>
+                <td>
+                    @ViewBag.MaxRate
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+<div class="containerforform">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Rating, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+            <div class="col-sm-4">
+                @Html.EditorFor(model => model.Rating, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Rating, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Feedback, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+            <div class="col-sm-10">
+                @Html.TextAreaFor(model => model.Feedback, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Feedback, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </div>
+        </div>
+
+    }
+</div>
+<script>
+    function SuccessFunction() {
+        toastr.success("Review Submitted Successfully")
+       
+    }
+    function FailureFunction() {
+        toastr.error("Something went wrong");
+    }
+</script>
+
